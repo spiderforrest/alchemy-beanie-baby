@@ -34,6 +34,9 @@ function displaySigns() {
     }
 }
 
-function assembleBeanie() {}
-
-function displayBeanies() {}
+function displayBeanies() {
+    beanieList.textContent = '';
+    for (const item of beanies) {
+        beanieList.append(renderBeanie(item));
+    }
+}
