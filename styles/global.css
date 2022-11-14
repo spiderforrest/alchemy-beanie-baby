@@ -33,3 +33,18 @@ header .logo {
 main {
     padding: 20px;
 }
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 20px;
+    height: 224px;
+    background-color: coral;
+}
+
+.card img {
+    height: 150px;
+}
