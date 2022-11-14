@@ -9,11 +9,18 @@ const beanieList = document.getElementById('beanie-list');
 let beanies = [];
 let signs = [];
 
+window.addEventListener('load', () => {
+    fetchBenies();
+    fetchSigns();
+});
+
 async function fetchBenies(sign) {
     const rawBeanies = await getBeanies(sign);
+    console.log(rawBeanies);
     if (rawBeanies.error) return;
     beanies = rawBeanies.data;
     displayBeanies();
+    console.log(beanies);
 }
 
 async function fetchSigns() {
@@ -21,6 +28,7 @@ async function fetchSigns() {
     if (rawSigns.error) return;
     signs = rawSigns.data;
     displaySigns();
+    console.log(signs);
 }
 
 function displaySigns() {
@@ -32,8 +40,3 @@ function displaySigns() {
 function assembleBeanie() {}
 
 function displayBeanies() {}
-
-window.addEventListener('load', async () => {
-    fetchBenies();
-    fetchSigns();
-});
