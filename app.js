@@ -14,6 +14,12 @@ window.addEventListener('load', () => {
     fetchSigns();
 });
 
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(searchForm);
+    fetchBenies(formData.get('sign'));
+});
+
 async function fetchBenies(sign) {
     const rawBeanies = await getBeanies(sign);
     if (rawBeanies.error) return;
