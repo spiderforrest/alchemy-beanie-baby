@@ -1,11 +1,39 @@
-/* Imports */
+import { getBeanies, getSigns } from './lib/supabase.js';
+import { renderBeanie, renderSign } from './lib/render-utils.js';
 
-/* Get DOM Elements */
+const searchForm = document.getElementById('search-form');
+const searchDropdown = document.getElementById('sign-select');
+const submit = document.getElementById('submit');
+const beanieList = document.getElementById('beanie-list');
 
-/* State */
+let beanies = [];
+let signs = [];
 
-/* Events */
+async function fetchBenies(sign) {
+    const rawBeanies = await getBeanies(sign);
+    if (rawBeanies.error) return;
+    beanies = rawBeanies.data;
+    displayBeanies();
+}
 
-/* Display Functions */
+async function fetchSigns() {
+    const rawSigns = await getSigns();
+    if (rawSigns.error) return;
+    signs = rawSigns.data;
+    displaySigns();
+}
 
-// (don't forget to call any display functions you want to run on page load!)
+function displaySigns() {
+    for (const item of signs) {
+        searchDropdown.append(renderSign(item));
+    }
+}
+
+function assembleBeanie() {}
+
+function displayBeanies() {}
+
+window.addEventListener('load', async () => {
+    fetchBenies();
+    fetchSigns();
+});
